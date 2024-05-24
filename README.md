@@ -101,14 +101,40 @@ point2 = App.Vector(10, 0, 0)    # Конец стрелки
 point3 = App.Vector(7, 3, 0)     # Верхняя точка наконечника
 point4 = App.Vector(7, -3, 0)    # Нижняя точка наконечника
 
-# Создаем основную линию стрелки
-Draft.makeLine(point1, point2)
 
-# Создаем линии для наконечника стрелки
-Draft.makeLine(point2, point3)
-Draft.makeLine(point2, point4)
-
+line1 = Draft.makeLine(point1, point2)
+line2 = Draft.makeLine(point2, point3)
+line3 = Draft.makeLine(point2, point4)
 doc.recompute()
+```
+## Создание группы 
+Для создании групппы выполните следующий код:
+```python
+# Создаем группу и добавляем в нее линии
+group = doc.addObject("App::DocumentObjectGroup", "Group1")
+group.addObject(line1)
+group.addObject(line2)
+group.addObject(line3)
+```
+## Перемещение группы с помощью функции Move
+Для перемещения групппы выполните следующий код:
+```python
+# Смещаем объекты в группе на вектор (10, 0, 0)
+Draft.move(group.OutList, App.Vector(10, 0, 0), copy=False)
+```
+## Поворот группы с помощью функции Rotate
+```python
+# Определяем ось вращения
+axis = App.Vector(0, 0, 0) 
+# Вращаем объекты в группе на 90 градусов относительно заданной оси
+Draft.rotate(group.OutList, 90, axis)
+```
+## Установка Pandas в образ FreeCAD
+Открываете CMD консоль через администратора и вводите следующие команды
+Указываете свой путь к папке bin в FreeCAD, после устанавливаете библиотеку Pandas
+```bash
+cd "C:\Program Files\FreeCAD\bin"
+pip install pandas
 ```
 
 
