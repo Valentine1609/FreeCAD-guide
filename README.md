@@ -34,6 +34,9 @@
 import FreeCAD as App
 import Draft
 
+# Получаем текущий активный документ
+doc = App.activeDocument()
+
 # Создаем две точки
 point1 = App.Vector(0, 0, 0)
 point2 = App.Vector(10, 0, 0)
@@ -49,6 +52,9 @@ doc.recompute()
 ```python
 import FreeCAD as App
 import Draft
+
+# Получаем текущий активный документ
+doc = App.activeDocument()
 
 # Создаем четыре точки
 points = [App.Vector(0, 0, 0), App.Vector(10, 0, 0), App.Vector(10, 10, 0), App.Vector(0, 10, 0), App.Vector(0, 0, 0)]
@@ -66,6 +72,11 @@ doc.recompute()
 import FreeCAD as App
 import Draft
 
+# Получаем текущий активный документ
+doc = App.activeDocument()
+
+# Получаем текущий активный документ
+doc = App.activeDocument()
 # Создаем центр и радиус окружности
 center = App.Vector(5, 5, 0)
 radius = 5
@@ -80,6 +91,9 @@ doc.recompute()
 ```python
 import FreeCAD as App
 import Draft
+
+# Получаем текущий активный документ
+doc = App.activeDocument()
 
 # Создаем точки для стрелки
 point1 = App.Vector(0, 0, 0)     # Начало стрелки
