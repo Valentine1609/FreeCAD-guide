@@ -129,6 +129,11 @@ axis = App.Vector(0, 0, 0)
 # Вращаем объекты в группе на 90 градусов относительно заданной оси
 Draft.rotate(group.OutList, 90, axis)
 ```
+## Масштабируем группу
+```python
+scale_factor = App.Vector(0.5, 0.5, 0.5)  # масштаб вдоль каждой оси
+Draft.scale(group.OutList, scale_factor)
+```
 ## Установка Pandas в образ FreeCAD
 Открываете CMD консоль через администратора и вводите следующие команды
 Указываете свой путь к папке bin в FreeCAD, после устанавливаете библиотеку Pandas
