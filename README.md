@@ -32,7 +32,7 @@
 
 ```python
 import FreeCAD as App
-import Part
+import Draft
 
 doc = App.newDocument()
 
@@ -41,10 +41,7 @@ point1 = App.Vector(0, 0, 0)
 point2 = App.Vector(10, 0, 0)
 
 # Создаем линию между этими точками
-line = Part.LineSegment(point1, point2)
-
-# Добавляем линию в документ
-Part.show(line.toShape())
+line = Draft.makeLine(point1, point2)
 
 doc.recompute()
 ```
@@ -53,19 +50,16 @@ doc.recompute()
 
 ```python
 import FreeCAD as App
-import Part
+import Draft
 
 doc = App.newDocument()
 
 # Создаем четыре точки
-points = [App.Vector(0, 0, 0), App.Vector(10, 0, 0), App.Vector(10, 10, 0), App.Vector(0, 10, 0)]
+points = [App.Vector(0, 0, 0), App.Vector(10, 0, 0), App.Vector(10, 10, 0), App.Vector(0, 10, 0), App.Vector(0, 0, 0)]
 
 # Создаем линии между этими точками
-lines = [Part.LineSegment(points[i], points[(i + 1) % 4]) for i in range(4)]
-
-# Добавляем линии в документ
-for line in lines:
-    Part.show(line.toShape())
+for i in range(len(points) - 1):
+    Draft.makeLine(points[i], points[i + 1])
 
 doc.recompute()
 ```
@@ -74,7 +68,7 @@ doc.recompute()
 
 ```python
 import FreeCAD as App
-import Part
+import Draft
 
 doc = App.newDocument()
 
@@ -83,10 +77,7 @@ center = App.Vector(5, 5, 0)
 radius = 5
 
 # Создаем окружность
-circle = Part.Circle(center, App.Vector(0, 0, 1), radius)
-
-# Добавляем окружность в документ
-Part.show(circle.toShape())
+circle = Draft.makeCircle(radius, center)
 
 doc.recompute()
 
