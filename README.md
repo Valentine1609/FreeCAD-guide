@@ -47,3 +47,50 @@ line = Part.LineSegment(point1, point2)
 Part.show(line.toShape())
 
 doc.recompute()
+```
+## Построение квадрата
+Для создания квадрата выполните следующий код:
+
+```python
+import FreeCAD as App
+import Part
+
+doc = App.newDocument()
+
+# Создаем четыре точки
+points = [App.Vector(0, 0, 0), App.Vector(10, 0, 0), App.Vector(10, 10, 0), App.Vector(0, 10, 0)]
+
+# Создаем линии между этими точками
+lines = [Part.LineSegment(points[i], points[(i + 1) % 4]) for i in range(4)]
+
+# Добавляем линии в документ
+for line in lines:
+    Part.show(line.toShape())
+
+doc.recompute()
+```
+## Построение окружности
+Для создания окружности в FreeCAD используйте следующий код:
+
+```python
+import FreeCAD as App
+import Part
+
+doc = App.newDocument()
+
+# Создаем центр и радиус окружности
+center = App.Vector(5, 5, 0)
+radius = 5
+
+# Создаем окружность
+circle = Part.Circle(center, App.Vector(0, 0, 1), radius)
+
+# Добавляем окружность в документ
+Part.show(circle.toShape())
+
+doc.recompute()
+
+```
+
+
+
