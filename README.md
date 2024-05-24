@@ -75,7 +75,7 @@ circle = Draft.makeCircle(radius, center)
 
 doc.recompute()
 ```
-## Создание условного знака (стрелки)
+## Построение условного знака (стрелки)
 Для создания условного знака стрелки выполните следующий код:
 ```python
 import FreeCAD as App
