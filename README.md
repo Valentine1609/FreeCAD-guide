@@ -12,6 +12,7 @@
 9. [Поворот группы с помощью функции Rotate](#Поворот-группы-с-помощью-функции-Rotate)
 10. [Масштабирование группы ](#Масштабирование-группы)
 11. [Установка Pandas в образ FreeCAD](#Установка-Pandas-в-образ-FreeCAD)
+12. [Соединение линий между точками](#Соединение-линий-между-точками)
 ## Установка FreeCAD
 Чтобы начать работать с FreeCAD, необходимо установить его. Следуйте этим шагам:
 
@@ -145,5 +146,37 @@ Draft.scale(group.Group, scale=App.Vector(2, 2, 2), center=App.Vector(0, 0, 0), 
 cd "C:\Program Files\FreeCAD\bin"
 pip install pandas
 ```
+## Соединение линий между точками
+```python
+lines_list = [
+    (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 1), 
+    (7, 8), (8, 9), (9, 7), (11, 13), (11, 10), (10, 12), 
+    (12, 13), (8, 5), (1, 11), (10, 3), (10, 4), (12, 5), 
+    (9, 2), (11, 9), (9, 3), (8, 6), (13, 6), (8, 4)
+]
 
+for line in lines_list:
+    i = 1
+    for point in line:
+        if i == 1:
+            indx = df.index[df["Names"] == point]
+            point1 = App.Vector(df['x'][indx], df['y'][indx], df['z'][indx])
+            i = 0
+        else:
+            indx = df.index[df["Names"] == point]
+            point2 = App.Vector(df['x'][indx], df['y'][indx], df['z'][indx])
+            i = 1
+    line = Draft.make_line(point1, point2)
+```
+Добавление подписей к точкам
+```python
+for i in range(len(x_coords)):
+    if Name[i] != "Names":  # Пропуск первой строки с заголовками
+        t = [str(Name[i])]  # Список с текстом для подписи
+        p = App.Vector(x_coords[i], y_coords[i], z_coords[i])  # Координаты для подписи
+        place = App.Placement(p, App.Rotation())
+        text = Draft.make_text(t, place)
+        text.ViewObject.FontSize = 0.00005  # Установка размера шрифта
+        Draft.move(text, App.Vector(0.03, 0, 0.0), copy=False)
+```
 
